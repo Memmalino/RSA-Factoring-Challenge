@@ -1,29 +1,33 @@
-import sys
+#!/usr/bin/python3
+def check_factor(my_list):
+    """check factor of number in a list"""
+    import sys
 
-def factorize(number):
-    factors = []
-    for i in range(2, number // 2 + 1):
-        if number % i == 0:
-            factors.append((i, number // i))
-    return factors
+    if len(my_list) == 0 or my_list is None:
+        print("An error occured")
+    for q in my_list:
+       i = int(q)
+       for j in range(2, sys.maxsize):
+           if i % j == 0:
+               print("{:d}={:d}*{:d}".format(i, int(i/j), j))
+               break
 
-def main(filename):
-    try:
-        with open(filename, 'r') as file:
-            for line in file:
-                number = int(line.strip())
-                factorizations = factorize(number)
-                for factorization in factorizations:
-                    print(f'{number}={factorization[0]}*{factorization[1]}')
-    except FileNotFoundError:
-        print(f"File '{filename}' not found.")
-    except ValueError:
-        print("Invalid input in the file. Please ensure all lines contain valid natural numbers.")
+def factoring_challenge():
+    """factor two numbers"""
+    import sys
 
-if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: factors <file>")
-        sys.exit(1)
-    
-    filename = sys.argv[1]
-    main(filename)
+    lis = sys.argv
+    if len(lis) < 2:
+        print("Error!:<USAGE> ./factors filename")
+        exit(98)
+    f_name = ''
+    if len(lis) == 2:
+        f_name = lis[1]
+    if len(lis) == 3:
+        f_name = lis[2]
+    with open(f_name) as file_in:
+        lines = []
+        for line in file_in:
+            lines.append(line)
+    check_factor(lines)
+factoring_challenge()
